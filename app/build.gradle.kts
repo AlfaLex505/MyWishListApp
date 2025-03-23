@@ -1,12 +1,12 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.example.mywishlistapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.mywishlistapp"
@@ -52,6 +52,15 @@ android {
 
 dependencies {
 
+    //    Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    implementation("androidx.navigation:navigation-compose:2.8.9")
+    implementation("androidx.compose.ui:ui:1.7.8")
+    implementation("androidx.compose.material:material:1.7.8")
+    implementation("androidx.compose.ui:ui-tooling-preview-android:1.7.8")
 
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
