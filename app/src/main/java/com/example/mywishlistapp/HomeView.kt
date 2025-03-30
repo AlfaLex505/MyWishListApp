@@ -1,5 +1,6 @@
 package com.example.mywishlistapp
 
+import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -22,11 +23,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.mywishlistapp.data.DummyWish
 import com.example.mywishlistapp.data.Wish
 
 @Composable
-fun HomeView(){
+fun HomeView(
+    navController: NavController,
+    viewModel: WishViewModel
+){
 
     val context = LocalContext.current
 
@@ -42,6 +47,8 @@ fun HomeView(){
                 containerColor = Color.Black,
                 shape = CircleShape,
                 onClick = {
+                    navController.navigate(Screen.AddScreen.route)
+
                     Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
                 }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
