@@ -10,12 +10,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Card
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -35,8 +36,10 @@ fun HomeView(
 ){
 
     val context = LocalContext.current
+    val scaffoldState = rememberScaffoldState()
 
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = { AppBarView(title = "WishList", {
             Toast.makeText(context, "Button Clicked", Toast.LENGTH_SHORT).show()
         }) },
@@ -48,8 +51,7 @@ fun HomeView(
                 containerColor = Color.Black,
                 shape = CircleShape,
                 onClick = {
-                    navController.navigate(Screen.AddScreen.route)
-
+                    navController.navigate(Screen.AddScreen.route + "0L")
                     Toast.makeText(context, "FAButton Clicked", Toast.LENGTH_LONG).show()
                 }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
@@ -63,8 +65,9 @@ fun HomeView(
             .padding(it)){
             items(wishlist.value){
                 wish -> WishItem(wish = wish) {
-
-            }
+                    val id = wish.id
+                    navController.navigate(Screen.AddScreen.route = "/$id")
+                }
             }
         }
     }
