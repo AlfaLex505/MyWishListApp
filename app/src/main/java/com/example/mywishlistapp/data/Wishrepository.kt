@@ -2,7 +2,7 @@ package com.example.mywishlistapp.data
 
 import kotlinx.coroutines.flow.Flow
 
-class Wishrepository(private val wishDao: WishDao) {
+class WishRepository(private val wishDao: WishDao) {
 
     suspend fun  addWish(wish: Wish){
         wishDao.addAWish(wish)
